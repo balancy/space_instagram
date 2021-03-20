@@ -1,10 +1,9 @@
 import os
 
+from dotenv import load_dotenv
 from instabot import Bot
 from PIL import Image
 import requests
-
-from settings import USERNAME, PASSWORD
 
 SPACEX_API_URL = "https://api.spacexdata.com/v3/launches"
 HUBBLE_API_URL = "http://hubblesite.org/api/v3/image"
@@ -188,7 +187,11 @@ def post_images_instagram() -> None:
     """
 
     bot = Bot()
-    bot.login(username=USERNAME, password=PASSWORD)
+    try:
+        bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'])
+    except KeyError:
+        print("Service is temporarily unavailable. Try later.")
+        return
 
     images_paths = find_all_images_in_folder('images/spacex/') + find_all_images_in_folder('images/hubble/')
     for image_path in images_paths:
@@ -197,6 +200,8 @@ def post_images_instagram() -> None:
 
 if __name__ == '__main__':
     requests.packages.urllib3.disable_warnings()
+
+    load_dotenv()
 
     spacex_images_paths = fetch_spacex_last_launch_images()
     hubble_images_paths = fetch_hubble_images_by_collection('spacecraft')
