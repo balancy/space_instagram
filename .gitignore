@@ -1,4 +1,6 @@
 __pycache__/
 .idea/
+config/
 env/
 images/
+settings.py
