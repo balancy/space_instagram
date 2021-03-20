@@ -31,10 +31,14 @@ env\scripts\activate
 ```
 pip install -r requirements.txt
 ```
-5. Rename file `.env.example` to `.env` and initialize your instagram username and password
+5. Rename file `.env.example` to `.env` and initialize your instagram username and password:
 ```console
 INSTAGRAM_USERNAME = 'your_instagram_username'
 INSTAGRAM_PASSWORD = 'your_instagram_password'
 ```
+6. Run script by command:
+```console
+python main.py
+```
 ## Project Goals
-The code is written for educational purposes on online-course for web-developers dvmn.org.
+The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/).
