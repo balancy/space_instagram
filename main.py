@@ -161,7 +161,9 @@ def resize_save_images_instagram_format() -> None:
     for image_path in images_paths:
         print(f"- processing image '{image_path}'")
         filename = image_path.split('/')[-1]
-        if not os.path.exists(f"{folder_to_save}{filename}"):
+        path_to_save = f"{folder_to_save}{filename.split('.')[0]}.jpg"
+
+        if not os.path.exists(path_to_save):
             image = Image.open(image_path)
             if image.mode != 'RGB':
                 image = image.convert("RGB")
@@ -175,25 +177,22 @@ def resize_save_images_instagram_format() -> None:
 
             if coefficient_reduce > 1:
                 image.thumbnail((int(width/coefficient_reduce), int(height/coefficient_reduce)))
-            path_to_save = f"{folder_to_save}instagram_{filename.split('.')[0]}.jpg"
             image.save(path_to_save, format='JPEG')
-            print(f"- image saved to '{path_to_save}'")
+            print(f"- image '{path_to_save}' is processed")
 
     print("Resizing is finished")
 
-#
-# def post_images_instagram(complete_path_to_image) -> None:
-#     """Posts images on instagram given their links.
-#
-#     :param complete_path_to_image:
-#     :return:
-#     """
-#
-#     bot = Bot()
-#     bot.login(username=USERNAME, password=PASSWORD)
-#
-#     file = open(complete_path_to_image, 'r')
-#     bot.upload_photo(complete_path_to_image, caption='Space photo')
+
+def post_images_instagram() -> None:
+    """Posts images on instagram given their links.
+    """
+
+    bot = Bot()
+    bot.login(username=USERNAME, password=PASSWORD)
+
+    images_paths = find_all_images_in_folder('images/spacex/') + find_all_images_in_folder('images/hubble/')
+    for image_path in images_paths:
+        bot.upload_photo(image_path)
 
 
 if __name__ == '__main__':
@@ -202,3 +201,4 @@ if __name__ == '__main__':
     spacex_images_paths = fetch_spacex_last_launch_images()
     hubble_images_paths = fetch_hubble_images_by_collection('spacecraft')
     resize_save_images_instagram_format()
+    post_images_instagram()
