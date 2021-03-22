@@ -2,8 +2,6 @@ import os
 
 import requests
 
-from utils import check_folder
-
 HUBBLE_API_URL = "http://hubblesite.org/api/v3/image"
 
 
@@ -35,7 +33,7 @@ def fetch_hubble_images_by_collection(collection='spacecraft') -> None:
         return []
 
     folder = 'images/hubble/'
-    check_folder(folder)
+    os.makedirs(folder, exist_ok=True)
 
     path_to_images = []
     for image_id in images_ids:

@@ -2,7 +2,7 @@ import os
 
 from PIL import Image
 
-from utils import check_folder, find_all_images_in_folder
+from utils import find_all_images_in_folder
 
 
 def resize_images_save_in_instagram_format() -> None:
@@ -10,7 +10,7 @@ def resize_images_save_in_instagram_format() -> None:
     """
 
     folder_to_save = "images/instagram/"
-    check_folder(folder_to_save)
+    os.makedirs(folder_to_save, exist_ok=True)
 
     images_paths = find_all_images_in_folder('images/spacex/') + find_all_images_in_folder('images/hubble/')
     for image_path in images_paths:

@@ -2,8 +2,6 @@ import os
 
 import requests
 
-from utils import check_folder
-
 SPACEX_API_URL = "https://api.spacexdata.com/v3/launches"
 
 
@@ -32,7 +30,7 @@ def fetch_spacex_last_launch_images() -> None:
         return []
 
     folder = 'images/spacex/'
-    check_folder(folder)
+    os.makedirs(folder, exist_ok=True)
 
     paths_to_images = []
     for image_url in images_urls:

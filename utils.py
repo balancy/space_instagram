@@ -1,16 +1,6 @@
 import os
 
 
-def check_folder(folder='images/') -> None:
-    """Checks if folder exists. If not, creates it.
-
-    :param folder: relative path to folder
-    """
-
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-
-
 def find_all_images_in_folder(folder='images/'):
     """
 
