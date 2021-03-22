@@ -30,19 +30,15 @@ def fetch_hubble_images_by_collection(collection='spacecraft') -> None:
     :param collection: collection of images to search
     """
 
-    print(f"Searching for Hubble images ids in '{collection}' collection")
     images_ids = find_hubble_images_ids_by_collection(collection)
     if not images_ids:
         return []
 
-    print(f"Downloading Hubble images in '{collection}' collection")
     folder = 'images/hubble/'
     check_folder(folder)
 
     path_to_images = []
     for image_id in images_ids:
-        print(f"- image with id {image_id} is checking")
-
         r = requests.get(f"{HUBBLE_API_URL}/{image_id}", verify=False)
         try:
             r.raise_for_status()
@@ -53,7 +49,6 @@ def fetch_hubble_images_by_collection(collection='spacecraft') -> None:
         physical_path_to_photo = f"{folder}{image_id}.{image_url.split('.')[-1]}"
 
         if not os.path.exists(physical_path_to_photo):
-            print(f"- image with id {image_id} is downloading")
             r = requests.get(image_url, verify=False)
             try:
                 r.raise_for_status()
@@ -64,8 +59,6 @@ def fetch_hubble_images_by_collection(collection='spacecraft') -> None:
                 image.write(r.content)
 
         path_to_images.append(physical_path_to_photo)
-
-    print("Downloading Hubble images finished")
 
 
 if __name__ == '__main__':

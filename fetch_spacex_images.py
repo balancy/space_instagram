@@ -26,13 +26,11 @@ def fetch_spacex_last_launch_images() -> None:
     """Download SpaceX last launch images.
     """
 
-    print("Searching for SpaceX last launch images on web")
     try:
         images_urls = find_spacex_last_launch_images_urls()
     except requests.HTTPError:
         return []
 
-    print("Downloading SpaceX last launch images")
     folder = 'images/spacex/'
     check_folder(folder)
 
@@ -51,8 +49,6 @@ def fetch_spacex_last_launch_images() -> None:
                 image.write(r.content)
 
         paths_to_images.append(physical_path_to_photo)
-
-    print("Downloading finished")
 
 
 if __name__ == '__main__':
