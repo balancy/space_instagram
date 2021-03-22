@@ -33,8 +33,8 @@ pip install -r requirements.txt
 ```
 5. Rename file `.env.example` to `.env` and initialize your instagram username and password:
 ```console
-INSTAGRAM_USERNAME = 'your_instagram_username'
-INSTAGRAM_PASSWORD = 'your_instagram_password'
+INSTAGRAM_USERNAME='your_instagram_username'
+INSTAGRAM_PASSWORD='your_instagram_password'
 ```
 6. Run script by command:
 ```console
