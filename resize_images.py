@@ -5,8 +5,8 @@ from PIL import Image
 from utils import check_folder, find_all_images_in_folder
 
 
-def resize_save_images_instagram_format() -> None:
-    """Resizes images to have a 1080px as maximum dimension and saves it in .jpg format.
+def resize_images_save_in_instagram_format() -> None:
+    """Resizes images to have a 1080px as maximum dimension and saves them in .jpg format.
     """
 
     print("Resizing images:")
@@ -40,4 +40,4 @@ def resize_save_images_instagram_format() -> None:
 
 
 if __name__ == '__main__':
-    resize_save_images_instagram_format()
+    resize_images_save_in_instagram_format()

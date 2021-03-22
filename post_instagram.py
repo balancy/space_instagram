@@ -6,7 +6,7 @@ from instabot import Bot
 from utils import find_all_images_in_folder
 
 
-def post_images_instagram() -> None:
+def post_images_on_instagram() -> None:
     """Posts images on instagram given their links.
     """
 
@@ -26,4 +26,4 @@ def post_images_instagram() -> None:
 
 
 if __name__ == '__main__':
-    post_images_instagram()
+    post_images_on_instagram()
