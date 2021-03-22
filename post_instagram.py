@@ -10,8 +10,6 @@ def post_images_on_instagram() -> None:
     """Posts images on instagram given their links.
     """
 
-    load_dotenv()
-
     print("Posting images on Instagram")
     bot = Bot()
     try:
@@ -26,4 +24,5 @@ def post_images_on_instagram() -> None:
 
 
 if __name__ == '__main__':
+    load_dotenv()
     post_images_on_instagram()

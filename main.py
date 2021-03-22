@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 import requests
 
 from fetch_hubble_images import fetch_hubble_images_by_collection
@@ -8,6 +9,7 @@ from resize_images import resize_images_save_in_instagram_format
 
 if __name__ == '__main__':
     requests.packages.urllib3.disable_warnings()
+    load_dotenv()
 
     fetch_spacex_last_launch_images()
     fetch_hubble_images_by_collection('spacecraft')
