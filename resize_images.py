@@ -40,8 +40,8 @@ def reformat_all_images_instagram_format() -> None:
 
     images_paths = find_all_images_in_folder('images/spacex/') + find_all_images_in_folder('images/hubble/')
     for image_path in images_paths:
-        filename = image_path.split('/')[-1]
-        path_to_save = f"{folder_to_save}{filename.split('.')[0]}.jpg"
+        filename_with_ext = os.path.split(image_path)[1]
+        path_to_save = f"{folder_to_save}{filename_with_ext.split('.')[0]}.jpg"
 
         if not os.path.exists(path_to_save):
             image = resize_image(image_path)
