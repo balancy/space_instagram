@@ -18,15 +18,9 @@ def resize_image(image_path):
     if image.mode != 'RGB':
         image = image.convert("RGB")
 
-    width, height = image.size
-
-    max_dimension_instagram = MAX_DIMENSION
-    max_dimension_image = max([width, height])
-    coefficient_reduce = max_dimension_image / max_dimension_instagram \
-        if max_dimension_image > max_dimension_instagram else 1
-
-    if coefficient_reduce > 1:
-        image.thumbnail((int(width / coefficient_reduce), int(height / coefficient_reduce)))
+    need_to_resize = any([size > MAX_DIMENSION for size in image.size])
+    if need_to_resize:
+        image.thumbnail((MAX_DIMENSION, MAX_DIMENSION))
 
     return image
 
