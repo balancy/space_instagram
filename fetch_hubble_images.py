@@ -15,7 +15,8 @@ def find_hubble_images_ids_by_collection(collection='spacecraft'):
     response = requests.get(f"{HUBBLE_API_URL}s", params={'collection_name': collection})
     response.raise_for_status()
 
-    return [elm.get('id') for elm in response.json()]
+    response_json_format = response.json()
+    return [elm.get('id') for elm in response_json_format]
 
 
 def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collection='spacecraft') -> None:

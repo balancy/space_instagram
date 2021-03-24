@@ -14,8 +14,9 @@ def find_spacex_last_launch_images_urls() -> list:
     response = requests.get(SPACEX_API_URL)
     response.raise_for_status()
 
-    for response_line in range(len(response.json())-1, 0, -1):
-        photos_of_last_launch = response.json()[response_line].get('links').get('flickr_images')
+    response_json_format = response.json()
+    for response_line in range(len(response_json_format)-1, 0, -1):
+        photos_of_last_launch = response_json_format[response_line].get('links').get('flickr_images')
         if photos_of_last_launch:
             return photos_of_last_launch
 
