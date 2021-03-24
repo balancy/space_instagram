@@ -34,7 +34,9 @@ if __name__ == '__main__':
     reformat_images_instagram_format(folders_to_get_images=[folder_hubble_images, folder_spacex_images],
                                      folder_to_save=folder_insta_images)
 
+    username= os.environ['INSTAGRAM_USERNAME']
+    password = os.environ['INSTAGRAM_PASSWORD']
     try:
-        post_images_on_instagram(path_images=folder_insta_images)
+        post_images_on_instagram(username, password, path_images=folder_insta_images)
     except KeyError:
         print("Unable to find user or server is unavailable at the moment. Try later.")
