@@ -29,8 +29,6 @@ def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
     except requests.HTTPError:
         return
 
-    os.makedirs(folder_to_save, exist_ok=True)
-
     paths_to_images = []
     for image_url in images_urls:
         physical_path_to_photo = f"{folder_to_save}{image_url.split('/')[-1]}"

@@ -33,7 +33,6 @@ def reformat_all_images_instagram_format(folders_to_get_images=None,
     :param folder_to_save: folder where to save reformatted images.
     """
 
-    os.makedirs(folder_to_save, exist_ok=True)
     if not folders_to_get_images:
         images_paths = [*find_all_images_in_folder('images/spacex/'), *find_all_images_in_folder('images/hubble/')]
     else:

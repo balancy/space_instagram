@@ -31,8 +31,6 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
         print(f"Impossible to find images in {collection} collection")
         return
 
-    os.makedirs(folder_to_save, exist_ok=True)
-
     path_to_images = []
     for image_id in images_ids:
         r = requests.get(f"{HUBBLE_API_URL}/{image_id}", verify=False)
