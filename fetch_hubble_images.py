@@ -26,18 +26,12 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
     :param collection: collection of images to search
     """
 
-    try:
-        images_ids = find_hubble_images_ids_by_collection(collection)
-    except requests.HTTPError:
-        print(f"Impossible to find images in {collection} collection")
-        return
+    images_ids = find_hubble_images_ids_by_collection(collection)
 
     path_to_images = []
     for image_id in images_ids:
         response = requests.get(f"{HUBBLE_API_URL}/{image_id}", verify=False)
-        try:
-            response.raise_for_status()
-        except requests.HTTPError:
+        if response.status_code == 404:
             continue
 
         image_url = f"https:{response.json().get('image_files')[-1].get('file_url')}"
@@ -45,9 +39,7 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
 
         if not os.path.exists(physical_path_to_photo):
             response = requests.get(image_url, verify=False)
-            try:
-                response.raise_for_status()
-            except requests.HTTPError:
+            if response.status_code == 404:
                 continue
 
             with open(physical_path_to_photo, 'wb') as image:

@@ -33,9 +33,7 @@ def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
 
         if not os.path.exists(physical_path_to_photo):
             response = requests.get(image_url)
-            try:
-                response.raise_for_status()
-            except requests.HTTPError:
+            if response.status_code == 404:
                 continue
 
             with open(physical_path_to_photo, 'wb') as image:

@@ -26,10 +26,11 @@ if __name__ == '__main__':
     except requests.HTTPError:
         print("Server of SpaceX images is not currently available. Try later.")
 
+    collection = "spacecraft"
     try:
-        fetch_hubble_images_by_collection(folder_hubble_images, collection='spacecraft')
+        fetch_hubble_images_by_collection(folder_hubble_images, collection=collection)
     except requests.HTTPError:
-        print("Server of Hubble images is not currently available. Try later.")
+        print(f"Impossible to find images in {collection} collection")
 
     reformat_images_instagram_format(folders_to_get_images=[folder_hubble_images, folder_spacex_images],
                                      folder_to_save=folder_insta_images)
