@@ -12,6 +12,6 @@ if __name__ == '__main__':
     load_dotenv()
 
     fetch_spacex_last_launch_images()
-    fetch_hubble_images_by_collection('spacecraft')
+    fetch_hubble_images_by_collection()
     reformat_all_images_instagram_format()
     post_images_on_instagram()

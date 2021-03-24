@@ -20,21 +20,20 @@ def find_spacex_last_launch_images_urls() -> list:
             return photos_of_last_launch
 
 
-def fetch_spacex_last_launch_images() -> None:
+def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
     """Download SpaceX last launch images.
     """
 
     try:
         images_urls = find_spacex_last_launch_images_urls()
     except requests.HTTPError:
-        return []
+        return
 
-    folder = 'images/spacex/'
-    os.makedirs(folder, exist_ok=True)
+    os.makedirs(folder_to_save, exist_ok=True)
 
     paths_to_images = []
     for image_url in images_urls:
-        physical_path_to_photo = f"{folder}{image_url.split('/')[-1]}"
+        physical_path_to_photo = f"{folder_to_save}{image_url.split('/')[-1]}"
 
         if not os.path.exists(physical_path_to_photo):
             r = requests.get(image_url)

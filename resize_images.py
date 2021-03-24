@@ -25,11 +25,12 @@ def resize_image(image_path):
     return image
 
 
-def reformat_all_images_instagram_format() -> None:
+def reformat_all_images_instagram_format(folder_to_save="images/instagram/") -> None:
     """Reformat all images to instagram format and saves them in .jpg format.
+
+    :param folder_to_save: folder where to save reformatted images.
     """
 
-    folder_to_save = "images/instagram/"
     os.makedirs(folder_to_save, exist_ok=True)
 
     images_paths = find_all_images_in_folder('images/spacex/') + find_all_images_in_folder('images/hubble/')
