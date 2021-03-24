@@ -29,7 +29,7 @@ def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
     images_urls = find_spacex_last_launch_images_urls()
 
     for image_url in images_urls:
-        physical_path_to_photo = f"{folder_to_save}{image_url.split('/')[-1]}"
+        physical_path_to_photo = f"{folder_to_save}{os.path.split(image_url)[1]}"
 
         if not os.path.exists(physical_path_to_photo):
             response = requests.get(image_url)
