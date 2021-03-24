@@ -13,10 +13,7 @@ def post_images_on_instagram(path_images="images/instagram/") -> None:
     """
 
     bot = Bot()
-    try:
-        bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'])
-    except KeyError:
-        return
+    bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'])
 
     images_paths = find_all_images_in_folder(path_images)
     for image_path in images_paths:

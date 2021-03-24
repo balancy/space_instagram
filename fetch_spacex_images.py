@@ -24,12 +24,9 @@ def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
     """Download SpaceX last launch images.
     """
 
-    try:
-        images_urls = find_spacex_last_launch_images_urls()
-    except requests.HTTPError:
-        return
-
     paths_to_images = []
+    images_urls = find_spacex_last_launch_images_urls()
+
     for image_url in images_urls:
         physical_path_to_photo = f"{folder_to_save}{image_url.split('/')[-1]}"
 
