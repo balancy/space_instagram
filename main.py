@@ -26,13 +26,16 @@ if __name__ == "__main__":
     try:
         fetch_spacex_last_launch_images(spacex_images_folder)
     except requests.HTTPError:
-        print("Server of SpaceX images is not currently available. Try later.")
+        logging.error("SpaceX API is currently unavailable.")
+        print("Server of SpaceX images is currently unavailable. Try later.")
 
     collection = "spacecraft"
     try:
         fetch_hubble_images_by_collection(hubble_images_folder, collection=collection)
     except requests.HTTPError:
-        print(f"Impossible to find images in {collection} collection")
+        logging.error(f"Hubble API is currently unavailable. Or couldn't find {collection} collection")
+        print(f"Hubble API is currently unavailable or Impossible to find images in {collection} collection. "
+              f"Check the spelling.")
 
     reformat_images_instagram_format(folders_to_get_images=[hubble_images_folder, spacex_images_folder],
                                      folder_to_save=insta_images_folder)
