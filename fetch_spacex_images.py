@@ -22,8 +22,7 @@ def find_spacex_last_launch_images_urls() -> list:
 
 
 def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
-    """Download SpaceX last launch images.
-    """
+    """Download SpaceX last launch images."""
 
     paths_to_images = []
     images_urls = find_spacex_last_launch_images_urls()
