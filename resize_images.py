@@ -37,7 +37,7 @@ def reformat_images_instagram_format(folders_to_get_images,
 
     for image_path in images_paths:
         filename_with_ext = os.path.split(image_path)[1]
-        path_to_save = f"{folder_to_save}{filename_with_ext.split('.')[0]}.jpg"
+        path_to_save = f"{folder_to_save}{os.path.splitext(filename_with_ext)[0]}.jpg"
 
         if not os.path.exists(path_to_save):
             image = resize_convert_image(image_path)
