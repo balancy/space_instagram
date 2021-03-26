@@ -19,7 +19,7 @@ def find_hubble_images_ids_by_collection(collection='spacecraft'):
     return [elm.get('id') for elm in response_json_format]
 
 
-def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collection='spacecraft') -> None:
+def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collection='spacecraft'):
     """Downloads hubble best quality images bu collection.
 
     :param folder_to_save: folder to save images
@@ -28,7 +28,6 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
 
     images_ids = find_hubble_images_ids_by_collection(collection)
 
-    path_to_images = []
     for image_id in images_ids:
         response = requests.get(f"{HUBBLE_API_URL}/{image_id}", verify=False)
         if response.status_code == 404:
@@ -44,8 +43,6 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
 
             with open(physical_path_to_photo, 'wb') as image:
                 image.write(response.content)
-
-        path_to_images.append(physical_path_to_photo)
 
 
 if __name__ == '__main__':
