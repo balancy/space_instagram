@@ -1,3 +1,4 @@
+import logging
 import os
 
 import requests
@@ -24,6 +25,8 @@ def find_spacex_last_launch_images_urls() -> list:
 def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
     """Download SpaceX last launch images."""
 
+    logger = logging.getLogger(__name__)
+
     images_urls = find_spacex_last_launch_images_urls()
 
     for image_url in images_urls:
@@ -31,7 +34,8 @@ def fetch_spacex_last_launch_images(folder_to_save="images/spacex/"):
 
         if not os.path.exists(physical_path_to_photo):
             response = requests.get(image_url)
-            if response.status_code == 404:
+            if not response.ok:
+                logger.warning(f"Unable to reach url {image_url}")
                 continue
 
             with open(physical_path_to_photo, "wb") as image:

@@ -1,3 +1,4 @@
+import logging
 import os
 
 from dotenv import load_dotenv
@@ -12,6 +13,7 @@ from resize_images import reformat_images_instagram_format
 if __name__ == "__main__":
     requests.packages.urllib3.disable_warnings()
     load_dotenv()
+    logging.basicConfig(level=logging.INFO)
 
     hubble_images_folder = "images/hubble/"
     spacex_images_folder = "images/spacex/"
@@ -35,7 +37,7 @@ if __name__ == "__main__":
     reformat_images_instagram_format(folders_to_get_images=[hubble_images_folder, spacex_images_folder],
                                      folder_to_save=insta_images_folder)
 
-    username= os.environ["INSTAGRAM_USERNAME"]
+    username = os.environ["INSTAGRAM_USERNAME"]
     password = os.environ["INSTAGRAM_PASSWORD"]
     try:
         post_images_on_instagram(username, password, imgs_folder=insta_images_folder)

@@ -1,3 +1,4 @@
+import logging
 import os
 
 import requests
@@ -26,11 +27,14 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
     :param collection: collection of images to search
     """
 
+    logger = logging.getLogger(__name__)
+
     images_ids = find_hubble_images_ids_by_collection(collection)
 
     for image_id in images_ids:
         response = requests.get(f"{HUBBLE_API_URL}/{image_id}", verify=False)
-        if response.status_code == 404:
+        if not response.ok:
+            logger.warning(f"Unable to reach url {HUBBLE_API_URL}/{image_id}")
             continue
 
         image_url = f"https:{response.json().get('image_files')[-1].get('file_url')}"
@@ -38,7 +42,8 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
 
         if not os.path.exists(physical_path_to_photo):
             response = requests.get(image_url, verify=False)
-            if response.status_code == 404:
+            if not response.ok:
+                logger.warning(f"Unable to reach url {image_url}")
                 continue
 
             with open(physical_path_to_photo, "wb") as image:
