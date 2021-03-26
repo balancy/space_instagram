@@ -1,7 +1,7 @@
 import os
 
 
-def find_all_images_in_folder(folder='images/'):
+def find_all_images_in_folder(folder="images/"):
     """Finds all images in given folder and its subfolders.
 
     :param folder: folder to search files inside
@@ -16,5 +16,5 @@ def find_all_images_in_folder(folder='images/'):
     return files_paths
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     paths = find_all_images_in_folder()

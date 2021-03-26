@@ -5,21 +5,21 @@ import requests
 HUBBLE_API_URL = "http://hubblesite.org/api/v3/image"
 
 
-def find_hubble_images_ids_by_collection(collection='spacecraft'):
+def find_hubble_images_ids_by_collection(collection="spacecraft"):
     """Finds ids of hubble images by collection.
 
     :param collection: collection of images to search
     :return: list of images ids
     """
 
-    response = requests.get(f"{HUBBLE_API_URL}s", params={'collection_name': collection})
+    response = requests.get(f"{HUBBLE_API_URL}s", params={"collection_name": collection})
     response.raise_for_status()
 
     response_json_format = response.json()
-    return [elm.get('id') for elm in response_json_format]
+    return [elm.get("id") for elm in response_json_format]
 
 
-def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collection='spacecraft'):
+def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collection="spacecraft"):
     """Downloads hubble best quality images bu collection.
 
     :param folder_to_save: folder to save images
@@ -41,9 +41,9 @@ def fetch_hubble_images_by_collection(folder_to_save="images/hubble/", collectio
             if response.status_code == 404:
                 continue
 
-            with open(physical_path_to_photo, 'wb') as image:
+            with open(physical_path_to_photo, "wb") as image:
                 image.write(response.content)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fetch_hubble_images_by_collection()

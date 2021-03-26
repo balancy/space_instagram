@@ -15,7 +15,7 @@ def resize_convert_image(image_path):
     """
 
     image = Image.open(image_path)
-    if image.mode != 'RGB':
+    if image.mode != "RGB":
         image = image.convert("RGB")
 
     need_to_resize = any([size > MAX_DIMENSION for size in image.size])
@@ -41,10 +41,10 @@ def reformat_images_instagram_format(folders_to_get_images,
 
         if not os.path.exists(path_to_save):
             image = resize_convert_image(image_path)
-            image.save(path_to_save, format='JPEG')
+            image.save(path_to_save, format="JPEG")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     folder_hubble_images = "images/hubble/"
     folder_spacex_images = "images/spacex/"
     reformat_images_instagram_format(folders_to_get_images=[folder_hubble_images, folder_spacex_images])

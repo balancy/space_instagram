@@ -9,7 +9,7 @@ from post_instagram import post_images_on_instagram
 from resize_images import reformat_images_instagram_format
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     requests.packages.urllib3.disable_warnings()
     load_dotenv()
 
@@ -35,8 +35,8 @@ if __name__ == '__main__':
     reformat_images_instagram_format(folders_to_get_images=[hubble_images_folder, spacex_images_folder],
                                      folder_to_save=insta_images_folder)
 
-    username= os.environ['INSTAGRAM_USERNAME']
-    password = os.environ['INSTAGRAM_PASSWORD']
+    username= os.environ["INSTAGRAM_USERNAME"]
+    password = os.environ["INSTAGRAM_PASSWORD"]
     try:
         post_images_on_instagram(username, password, imgs_folder=insta_images_folder)
     except KeyError:

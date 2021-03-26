@@ -22,9 +22,9 @@ def post_images_on_instagram(username, password, imgs_folder="images/instagram/"
         bot.upload_photo(image_path)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     load_dotenv()
 
-    username= os.environ['INSTAGRAM_USERNAME']
-    password = os.environ['INSTAGRAM_PASSWORD']
+    username= os.environ["INSTAGRAM_USERNAME"]
+    password = os.environ["INSTAGRAM_PASSWORD"]
     post_images_on_instagram(username, password)
