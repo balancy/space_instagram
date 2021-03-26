@@ -2,6 +2,7 @@ __pycache__/
 .env
 .idea/
 .vscode/
+*.log
 config/
 env/
 images/
