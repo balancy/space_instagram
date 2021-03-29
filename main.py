@@ -27,7 +27,7 @@ if __name__ == "__main__":
         fetch_spacex_last_launch_images(spacex_images_folder)
     except requests.HTTPError as error_message:
         logging.error(error_message)
-        print(error_message")
+        print(error_message)
 
     collection = "spacecraft"
     try:
